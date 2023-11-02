@@ -78,13 +78,14 @@ while True:
     if cameraProcess.isCameraOpened:
         try:
             currentFrame = cameraProcess.getCurrentFrame()
+            currentFrame = cv2.resize(currentFrame, (640, 640))
             objectsToDetect = ['mouse']
             positions = cameraProcess.detectObjects(objectsToDetect, currentFrame)
 
             currentFrame = cameraProcess.track_objects(currentFrame, positions)
 
 
-            currentFrame = cv2.resize(currentFrame, (640, 640))
+
 
             cv2.imshow("Current Frame", currentFrame)
 
